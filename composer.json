@@ -1,5 +1,5 @@
 {
-    "name": "zimutech/snowflake",
+    "name": "zimutech/ipip",
     "description": "ipip.net geolocation api",
     "type": "library",
     "require": {
