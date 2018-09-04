@@ -13,8 +13,12 @@ class Ipip
 		}
 	}
 	
-	public function getRegionId(string $ip) : ?string
+	public function getRegionId(string $ip = null) : ?string
 	{
+		if(is_null($ip)) {
+			$ip = $_SERVER['REMOTE_ADDR'];
+		}
+
 		$url = sprintf("http://ipapi.ipip.net/find?addr=%s", $ip);
 		$data = json_decode($this->request($url));
 		if($data->ret === 'ok' && $data->data[0] === '中国') {
