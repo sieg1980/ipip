@@ -1,6 +1,6 @@
 <?php
 
-namespace Zimutech\Ipip;
+namespace Zimutech;
 
 class Ipip
 {
@@ -8,19 +8,20 @@ class Ipip
 	
 	public function __construct(string $token)
 	{
-		if(is_null($this->token)) {
+		if($this->token === null) {
 			$this->token = $token;
 		}
 	}
 	
 	public function getRegionId(string $ip = null) : ?string
 	{
-		if(is_null($ip)) {
+		if($ip === null) {
 			$ip = $_SERVER['REMOTE_ADDR'];
 		}
 
-		$url = sprintf("http://ipapi.ipip.net/find?addr=%s", $ip);
+		$url = 'http://ipapi.ipip.net/find?addr=' . $ip;
 		$data = json_decode($this->request($url));
+		
 		if($data->ret === 'ok' && $data->data[0] === '中国') {
 			return $data->data[9];
 		} else {
